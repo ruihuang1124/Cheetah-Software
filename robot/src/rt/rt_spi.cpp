@@ -266,7 +266,7 @@ void spine_to_spi(spi_data_t *data, spine_data_t *spine_data, int leg_0) {
 
   uint32_t calc_checksum = xor_checksum((uint32_t *)spine_data, 14);
   if (calc_checksum != (uint32_t)spine_data->checksum)
-    printf("SPI ERROR BAD CHECKSUM GOT 0x%hx EXPECTED 0x%hx\n", calc_checksum,
+    printf("SPI ERROR BAD CHECKSUM GOT 0x%x EXPECTED 0x%x\n", calc_checksum,
            spine_data->checksum);
 }
 
