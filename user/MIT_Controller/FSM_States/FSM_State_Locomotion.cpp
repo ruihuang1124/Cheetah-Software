@@ -262,7 +262,7 @@ void FSM_State_Locomotion<T>::LocomotionControlStep() {
     Kd_backup[leg] = this->_data->_legController->commands[leg].kdCartesian;
   }
 
-  if(this->_data->userParameters->use_wbc > 0.9){
+  if(this->_data->userParameters->use_wbc){
     _wbc_data->pBody_des = cMPCOld->pBody_des;
     _wbc_data->vBody_des = cMPCOld->vBody_des;
     _wbc_data->aBody_des = cMPCOld->aBody_des;
@@ -280,9 +280,9 @@ void FSM_State_Locomotion<T>::LocomotionControlStep() {
     _wbc_ctrl->run(_wbc_data, *this->_data);
   }
   for(int leg(0); leg<4; ++leg){
-    //this->_data->_legController->commands[leg].pDes = pDes_backup[leg];
+    this->_data->_legController->commands[leg].pDes = pDes_backup[leg];
     this->_data->_legController->commands[leg].vDes = vDes_backup[leg];
-    //this->_data->_legController->commands[leg].kpCartesian = Kp_backup[leg];
+    this->_data->_legController->commands[leg].kpCartesian = Kp_backup[leg];
     this->_data->_legController->commands[leg].kdCartesian = Kd_backup[leg];
   }
 
